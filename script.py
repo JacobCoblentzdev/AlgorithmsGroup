@@ -175,6 +175,7 @@ duplicate_800 = random.choices(range(400), k=800)
 
 #--------------------------------------------------------------------
 
+# This a test runner to run all of the tests
 def run_test(pivot_name, sort_function, input_name, original):
     global quick_comparisons, quick_swaps, max_depth
 
@@ -202,4 +203,18 @@ def run_test(pivot_name, sort_function, input_name, original):
                     ("Last pivot", quick_sort_last), 
                     ("Random pivot", quick_sort_random), 
                     ("Median of three pivot", quick_sort_median_of_3)]
-    
+
+    test_arr = [("Sorted", sorted_10),
+                ("Reverse sorted", reversed_10),
+                ("Random", random_10),
+                ("Duplicate heavy", duplicate_10),
+                        
+                ("Sorted", sorted_100),
+                ("Reverse sorted", reversed_100),
+                ("Random", random_100),
+                ("Duplicate heavy", duplicate_100),
+                        
+                ("Sorted", sorted_800),
+                ("Reverse sorted", reversed_800),
+                ("Random", random_800),
+                ("Duplicate heavy", duplicate_800)]
