@@ -254,5 +254,29 @@ print("Swaps: ", quick_swaps)
 print("Run time: ", run_time)
 print("Max recursion depth: ", max_depth)
 print()
+
+# reset variables before next run
+quick_comparisons = 0
+quick_swaps = 0
+start_time = 0
+finish_time = 0
+run_time = 0
+max_depth = 0
+
 print("---------------------------------------------------------")
+print()
+
+print("Quick sort results - Last element pivot on Sorted input array of size 10")
+print("Original: ", sorted_10)
+
+start_time = time.perf_counter_ns()
+quick_sort_last(sorted_10, 0, len(sorted_10) - 1)
+finish_time = time.perf_counter_ns()
+run_time = finish_time - start_time
+
+print("Sorted: ", sorted_10)
+print("Comparisons: ", quick_comparisons)
+print("Swaps: ", quick_swaps)
+print("Run time: ", run_time)
+print("Max recursion depth: ", max_depth)
 print()
