@@ -248,7 +248,7 @@ print("Quick sort results - First element pivot on Duplicate-Heavy input array o
 print("Original: ", duplicate_10)
 
 start_time = time.perf_counter_ns()
-quick_sort_first(random_10, 0, len(duplicate_10) - 1)
+quick_sort_first(duplicate_10, 0, len(duplicate_10) - 1)
 finish_time = time.perf_counter_ns()
 run_time = finish_time - start_time
 
