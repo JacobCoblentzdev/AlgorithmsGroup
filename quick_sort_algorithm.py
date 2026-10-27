@@ -1,6 +1,7 @@
 # this file is for the algorithm code. 
 
 import random
+import time
 
 quick_comparisons = 0
 quick_swaps = 0
@@ -157,10 +158,16 @@ duplicate_800 = random.choices(range(400), k=800)
 
 print("Quick sort results - First element pivot on Sorted input array of size 10")
 print("Original: ", sorted_10)
+
+start_time = time.perf_counter()
 quick_sort_first(sorted_10, 0, len(sorted_10) - 1)
+finish_time = time.perf_counter()
+run_time = finish_time - start_time
+
 print("Sorted: ", sorted_10)
 print("Comparisons: ", quick_comparisons)
 print("Swaps: ", quick_swaps)
+print("Run time: ", run_time)
 print()
 
 quick_comparisons = 0
