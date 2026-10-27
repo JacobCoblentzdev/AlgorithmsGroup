@@ -74,8 +74,8 @@ def quick_sort_median_of_3(values, low, high):
         values[median_of_3], values[high] = values[high], values[median_of_3]
         
         p = partition(values, low, high)
-        quick_sort_first(values, low, p - 1)
-        quick_sort_first(values, p + 1, high)
+        quick_sort_median_of_3(values, low, p - 1)
+        quick_sort_median_of_3(values, p + 1, high)
 
 #------------------------------------------------------
 
