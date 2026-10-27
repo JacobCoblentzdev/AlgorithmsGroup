@@ -103,10 +103,11 @@ random.seed(a=50, version=2)
 # sample gives unique numbers, n >= r
 
 #arrays of size 10
+# sorted_10 is for first pivot partition
 sorted_10 = sorted(random.sample(range(20), 10))
-last_pivot_sorted_10 = sorted_10
-random_pivot_sorted_10 = sorted_10
-median_of_3_pivot_sorted_10 = sorted_10
+last_pivot_sorted_10 = sorted_10.copy()
+random_pivot_sorted_10 = sorted_10.copy()
+median_of_3_pivot_sorted_10 = sorted_10.copy()
 # print(sorted_10)
 # print()
 
@@ -220,7 +221,7 @@ finish_time = 0
 run_time = 0
 max_depth = 0
 
-print("Quick sort results - First element pivot on Random-Sorted input array of size 10")
+print("Quick sort results - First element pivot on Random input array of size 10")
 print("Original: ", random_10)
 
 start_time = time.perf_counter_ns()
