@@ -87,76 +87,84 @@ random.seed(a=50, version=2)
 
 #arrays of size 10
 sorted_10 = sorted(random.sample(range(20), 10))
-print(sorted_10)
-print()
+# print(sorted_10)
+# print()
 
 # reversed input of size 10
 reversed_10 = sorted(random.sample(range(20), 10), reverse=True)
-print(reversed_10)
-print()
+# print(reversed_10)
+# print()
 
 # random input of size 10
 random_10 = random.sample(range(20), 10)
-print(random_10)
-print()
+# print(random_10)
+# print()
 
 # choices allows repeats. here n < r to force repeats
 # random.choices(range(n), k=r)
 duplicate_10 = random.choices(range(5), k=10)
-print(duplicate_10)
-print()
-print()
+# print(duplicate_10)
+# print()
+# print()
 
 #---------------------------------------------------------------
 # arrays of size 100
 sorted_100 = sorted(random.sample(range(200), 100))
-print(sorted_100)
-print()
+# print(sorted_100)
+# print()
 
 # reversed input of size 10
 reversed_100 = sorted(random.sample(range(200), 100), reverse=True)
-print(reversed_100)
-print()
+# print(reversed_100)
+# print()
 
 # random input of size 10
 random_100 = random.sample(range(200), 100)
-print(random_100)
-print()
+# print(random_100)
+# print()
 
 # choices allows repeats. here n < r to force repeats
 # random.choices(range(n), k=r)
 duplicate_100 = random.choices(range(50), k=100)
-print(duplicate_100)
-print()
-print()
+# print(duplicate_100)
+# print()
+# print()
 
 #--------------------------------------------------------------------
 
 # arrays of size 800
 sorted_800 = sorted(random.sample(range(1600), 800))
-print(sorted_800)
-print()
+# print(sorted_800)
+# print()
 
 # reversed input of size 10
 reversed_800 = sorted(random.sample(range(1600), 800), reverse=True)
-print(reversed_800)
-print()
+# print(reversed_800)
+# print()
 
 # random input of size 10
 random_800 = random.sample(range(1600), 800)
-print(random_800)
-print()
+# print(random_800)
+# print()
 
 # choices allows repeats. here n < r to force repeats
 # random.choices(range(n), k=r)
 duplicate_800 = random.choices(range(400), k=800)
-print(duplicate_800)
+# print(duplicate_800)
 
 #--------------------------------------------------------------------
 
-print("First element pivot on Sorted input array of size 10")
-print("Original array: ", sorted_10)
-quick_sort_first(sorted_10)
-print(sorted_10)
+print("Quick sort results - First element pivot on Sorted input array of size 10")
+print("Original: ", sorted_10)
+quick_sort_first(sorted_10, 0, len(sorted_10) - 1)
+print("Sorted: ", sorted_10)
+print("Comparisons: ", quick_comparisons)
+print("Swaps: ", quick_swaps)
+print()
+
+print("Quick sort results - First element pivot on Reverse-Sorted input array of size 10")
+print("Original: ", reversed_10)
+quick_sort_first(reversed_10, 0, len(reversed_10) - 1)
+print("Sorted: ", reversed_10)
 print("Comparisons: ", quick_comparisons)
 print("Swaps: ", quick_swaps)
