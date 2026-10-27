@@ -104,6 +104,9 @@ random.seed(a=50, version=2)
 
 #arrays of size 10
 sorted_10 = sorted(random.sample(range(20), 10))
+last_pivot_sorted_10 = sorted_10
+random_pivot_sorted_10 = sorted_10
+median_of_3_pivot_sorted_10 = sorted_10
 # print(sorted_10)
 # print()
 
@@ -270,11 +273,11 @@ print("Quick sort results - Last element pivot on Sorted input array of size 10"
 print("Original: ", sorted_10)
 
 start_time = time.perf_counter_ns()
-quick_sort_last(sorted_10, 0, len(sorted_10) - 1)
+quick_sort_last(sorted_10, 0, len(last_pivot_sorted_10) - 1)
 finish_time = time.perf_counter_ns()
 run_time = finish_time - start_time
 
-print("Sorted: ", sorted_10)
+print("Sorted: ", last_pivot_sorted_10)
 print("Comparisons: ", quick_comparisons)
 print("Swaps: ", quick_swaps)
 print("Run time: ", run_time)
