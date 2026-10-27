@@ -75,3 +75,42 @@ print()
 # random.choices(range(n), k=r)
 duplicate_800 = random.choices(range(400), k=800)
 print(duplicate_800)
+
+#--------------------------------------------------------------------
+
+quick_comparisons = 0
+quick_swaps = 0
+
+def partition(values, low, high):
+    global quick_comparisons, quick_swaps
+    pivot = values[high]
+    i = low - 1
+
+    for j in range(low, high):
+        quick_comparisons += 1
+        if values[j] <= pivot:
+            i += 1
+            values[i], values[j] = values[j], values[i]
+            quick_swaps += 1
+
+    values[i + 1], values[high] = values[high], values[i + 1]
+    quick_swaps += 1
+    return i + 1
+
+# quick sort with last pivot partition. no change to original code here
+def quick_sort_last(values, low, high):
+    if low < high:
+        p = partition(values, low, high)
+        quick_sort_last(values, low, p - 1)
+        quick_sort_last(values, p + 1, high)
+
+# quick sort with first pivot partition. no change to original code here
+def quick_sort_first(values, low, high):
+    if low < high:
+        
+        # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
+        values[low], values[high] = values[high], values[low]
+        
+        p = partition(values, low, high)
+        quick_sort_first(values, low, p - 1)
+        quick_sort_first(values, p + 1, high)
