@@ -26,6 +26,7 @@ def partition(values, low, high):
 
 # quick sort with last pivot partition
 def quick_sort_last(values, low, high, depth=0):
+    # before if low < high to include the base case in recursion depth
     global max_depth
     max_depth = max(max_depth, depth)
     
@@ -35,21 +36,27 @@ def quick_sort_last(values, low, high, depth=0):
         quick_sort_last(values, p + 1, high, depth + 1)
 
 # quick sort with first pivot partition. 
-def quick_sort_first(values, low, high):
+def quick_sort_first(values, low, high, depth=0):
+    # before if low < high to include the base case in recursion depth
+    global max_depth
+    max_depth = max(max_depth, depth)
+    
     if low < high:
-        
         # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
         # not incrementing swap, since i'm just moving the pivot in place
         values[low], values[high] = values[high], values[low]
         
         p = partition(values, low, high)
-        quick_sort_first(values, low, p - 1)
-        quick_sort_first(values, p + 1, high)
+        quick_sort_first(values, low, p - 1, depth + 1)
+        quick_sort_first(values, p + 1, high, depth + 1)
         
 # quick sort with random pivot partition. 
-def quick_sort_random(values, low, high):
+def quick_sort_random(values, low, high, depth=0):
+    # before if low < high to include the base case in recursion depth
+    global max_depth
+    max_depth = max(max_depth, depth)
+    
     if low < high:
-        
         # this is inclusive of both low and high, which is good here
         rand = random.randint(low, high)
         
@@ -57,11 +64,15 @@ def quick_sort_random(values, low, high):
         values[rand], values[high] = values[high], values[rand]
         
         p = partition(values, low, high)
-        quick_sort_random(values, low, p - 1)
-        quick_sort_random(values, p + 1, high)
+        quick_sort_random(values, low, p - 1, depth + 1)
+        quick_sort_random(values, p + 1, high, depth + 1)
         
 # quick sort with median-of-3 pivot partition. 
-def quick_sort_median_of_3(values, low, high):
+def quick_sort_median_of_3(values, low, high, depth=0):
+    # before if low < high to include the base case in recursion depth
+    global max_depth
+    max_depth = max(max_depth, depth)
+    
     if low < high:
         
         # get middle index
@@ -79,8 +90,8 @@ def quick_sort_median_of_3(values, low, high):
         values[median_of_3], values[high] = values[high], values[median_of_3]
         
         p = partition(values, low, high)
-        quick_sort_median_of_3(values, low, p - 1)
-        quick_sort_median_of_3(values, p + 1, high)
+        quick_sort_median_of_3(values, low, p - 1, depth + 1)
+        quick_sort_median_of_3(values, p + 1, high, depth + 1)
 
 #------------------------------------------------------
 
@@ -172,13 +183,16 @@ print("Sorted: ", sorted_10)
 print("Comparisons: ", quick_comparisons)
 print("Swaps: ", quick_swaps)
 print("Run time: ", run_time)
+print("Max recursion depth: ", max_depth)
 print()
 
+# reset variables before next run
 quick_comparisons = 0
 quick_swaps = 0
 start_time = 0
 finish_time = 0
 run_time = 0
+max_depth = 0
 
 print("Quick sort results - First element pivot on Reverse-Sorted input array of size 10")
 print("Original: ", reversed_10)
