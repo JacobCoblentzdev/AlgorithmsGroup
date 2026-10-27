@@ -104,12 +104,26 @@ def quick_sort_last(values, low, high):
         quick_sort_last(values, low, p - 1)
         quick_sort_last(values, p + 1, high)
 
-# quick sort with first pivot partition. no change to original code here
+# quick sort with first pivot partition. 
 def quick_sort_first(values, low, high):
     if low < high:
         
         # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
         values[low], values[high] = values[high], values[low]
+        
+        p = partition(values, low, high)
+        quick_sort_first(values, low, p - 1)
+        quick_sort_first(values, p + 1, high)
+        
+# quick sort with random pivot partition. 
+def quick_sort_first(values, low, high):
+    if low < high:
+        
+        # this is inclusive of both low and high, which is good here
+        rand = random.randint(low, high)
+        
+        # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
+        values[rand], values[high] = values[high], values[rand]
         
         p = partition(values, low, high)
         quick_sort_first(values, low, p - 1)
