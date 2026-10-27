@@ -2,6 +2,81 @@
 
 import random
 
+quick_comparisons = 0
+quick_swaps = 0
+
+def partition(values, low, high):
+    global quick_comparisons, quick_swaps
+    pivot = values[high]
+    i = low - 1
+
+    for j in range(low, high):
+        quick_comparisons += 1
+        if values[j] <= pivot:
+            i += 1
+            values[i], values[j] = values[j], values[i]
+            quick_swaps += 1
+
+    values[i + 1], values[high] = values[high], values[i + 1]
+    quick_swaps += 1
+    return i + 1
+
+# quick sort with last pivot partition. no change to original code here
+def quick_sort_last(values, low, high):
+    if low < high:
+        p = partition(values, low, high)
+        quick_sort_last(values, low, p - 1)
+        quick_sort_last(values, p + 1, high)
+
+# quick sort with first pivot partition. 
+def quick_sort_first(values, low, high):
+    if low < high:
+        
+        # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
+        values[low], values[high] = values[high], values[low]
+        
+        p = partition(values, low, high)
+        quick_sort_first(values, low, p - 1)
+        quick_sort_first(values, p + 1, high)
+        
+# quick sort with random pivot partition. 
+def quick_sort_first(values, low, high):
+    if low < high:
+        
+        # this is inclusive of both low and high, which is good here
+        rand = random.randint(low, high)
+        
+        # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
+        values[rand], values[high] = values[high], values[rand]
+        
+        p = partition(values, low, high)
+        quick_sort_first(values, low, p - 1)
+        quick_sort_first(values, p + 1, high)
+        
+# quick sort with median-of-3 pivot partition. 
+def quick_sort_median_of_3(values, low, high):
+    if low < high:
+        
+        # get middle index
+        mid = int(low + (high - low) / 2)
+        
+        iterable1 = (low, mid, high)
+        
+        # gives sorted list of median of 3 list
+        sorted_median_list = sorted(iterable1, key=lambda parameter: values[parameter])
+        
+        # 1 is the middle element of the sorted list, which is the median of three
+        median_of_3 = sorted_median_list[1]
+        
+        # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
+        values[median_of_3], values[high] = values[high], values[median_of_3]
+        
+        p = partition(values, low, high)
+        quick_sort_first(values, low, p - 1)
+        quick_sort_first(values, p + 1, high)
+
+#------------------------------------------------------
+
 # seeding with 50, fixed pseudorandom numbers
 random.seed(a=50, version=2)
 
@@ -78,75 +153,9 @@ print(duplicate_800)
 
 #--------------------------------------------------------------------
 
-quick_comparisons = 0
-quick_swaps = 0
-
-def partition(values, low, high):
-    global quick_comparisons, quick_swaps
-    pivot = values[high]
-    i = low - 1
-
-    for j in range(low, high):
-        quick_comparisons += 1
-        if values[j] <= pivot:
-            i += 1
-            values[i], values[j] = values[j], values[i]
-            quick_swaps += 1
-
-    values[i + 1], values[high] = values[high], values[i + 1]
-    quick_swaps += 1
-    return i + 1
-
-# quick sort with last pivot partition. no change to original code here
-def quick_sort_last(values, low, high):
-    if low < high:
-        p = partition(values, low, high)
-        quick_sort_last(values, low, p - 1)
-        quick_sort_last(values, p + 1, high)
-
-# quick sort with first pivot partition. 
-def quick_sort_first(values, low, high):
-    if low < high:
-        
-        # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
-        values[low], values[high] = values[high], values[low]
-        
-        p = partition(values, low, high)
-        quick_sort_first(values, low, p - 1)
-        quick_sort_first(values, p + 1, high)
-        
-# quick sort with random pivot partition. 
-def quick_sort_first(values, low, high):
-    if low < high:
-        
-        # this is inclusive of both low and high, which is good here
-        rand = random.randint(low, high)
-        
-        # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
-        values[rand], values[high] = values[high], values[rand]
-        
-        p = partition(values, low, high)
-        quick_sort_first(values, low, p - 1)
-        quick_sort_first(values, p + 1, high)
-        
-# quick sort with median-of-3 pivot partition. 
-def quick_sort_first(values, low, high):
-    if low < high:
-        
-        # get middle index
-        mid = int(low + (high - low) / 2)
-        
-        iterable1 = (low, mid, high)
-        
-        # gives sorted list of median of 3 list
-        sorted_median_list = sorted(iterable1, key=lambda parameter: values[parameter])
-        
-        # 1 is the middle element of the sorted list, which is the median of three
-        median_of_3 = sorted_median_list[1]
-        
-        # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
-        values[median_of_3], values[high] = values[high], values[median_of_3]
-        
-        p = partition(values, low, high)
-        quick_sort_first(values, low, p - 1)
-        quick_sort_first(values, p + 1, high)
+print("First element pivot on Sorted input array of size 10")
+print("Original array: ", sorted_10)
+quick_sort_first(sorted_10)
+print(sorted_10)
+print("Comparisons: ", quick_comparisons)
+print("Swaps: ", quick_swaps)
