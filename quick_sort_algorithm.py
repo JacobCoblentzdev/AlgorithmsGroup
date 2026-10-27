@@ -202,9 +202,57 @@ quick_sort_first(reversed_10, 0, len(reversed_10) - 1)
 finish_time = time.perf_counter_ns()
 run_time = finish_time - start_time
 
-print("Reversed: ", reversed_10)
+print("Sorted: ", reversed_10)
 print("Comparisons: ", quick_comparisons)
 print("Swaps: ", quick_swaps)
 print("Run time: ", run_time)
 print("Max recursion depth: ", max_depth)
+print()
+
+# reset variables before next run
+quick_comparisons = 0
+quick_swaps = 0
+start_time = 0
+finish_time = 0
+run_time = 0
+max_depth = 0
+
+print("Quick sort results - First element pivot on Random-Sorted input array of size 10")
+print("Original: ", random_10)
+
+start_time = time.perf_counter_ns()
+quick_sort_first(random_10, 0, len(random_10) - 1)
+finish_time = time.perf_counter_ns()
+run_time = finish_time - start_time
+
+print("Sorted: ", random_10)
+print("Comparisons: ", quick_comparisons)
+print("Swaps: ", quick_swaps)
+print("Run time: ", run_time)
+print("Max recursion depth: ", max_depth)
+print()
+
+# reset variables before next run
+quick_comparisons = 0
+quick_swaps = 0
+start_time = 0
+finish_time = 0
+run_time = 0
+max_depth = 0
+
+print("Quick sort results - First element pivot on Duplicate-Heavy input array of size 10")
+print("Original: ", duplicate_10)
+
+start_time = time.perf_counter_ns()
+quick_sort_first(random_10, 0, len(duplicate_10) - 1)
+finish_time = time.perf_counter_ns()
+run_time = finish_time - start_time
+
+print("Sorted: ", duplicate_10)
+print("Comparisons: ", quick_comparisons)
+print("Swaps: ", quick_swaps)
+print("Run time: ", run_time)
+print("Max recursion depth: ", max_depth)
+print()
+print("---------------------------------------------------------")
 print()
