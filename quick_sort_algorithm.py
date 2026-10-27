@@ -25,11 +25,14 @@ def partition(values, low, high):
 
 
 # quick sort with last pivot partition
-def quick_sort_last(values, low, high):
+def quick_sort_last(values, low, high, depth=0):
+    global max_depth
+    max_depth = max(max_depth, depth)
+    
     if low < high:
         p = partition(values, low, high)
-        quick_sort_last(values, low, p - 1)
-        quick_sort_last(values, p + 1, high)
+        quick_sort_last(values, low, p - 1, depth + 1)
+        quick_sort_last(values, p + 1, high, depth + 1)
 
 # quick sort with first pivot partition. 
 def quick_sort_first(values, low, high):
