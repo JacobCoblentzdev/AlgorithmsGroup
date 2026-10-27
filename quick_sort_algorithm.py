@@ -33,6 +33,7 @@ def quick_sort_first(values, low, high):
     if low < high:
         
         # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
+        # not incrementing swap, since i'm just moving the pivot in place
         values[low], values[high] = values[high], values[low]
         
         p = partition(values, low, high)
