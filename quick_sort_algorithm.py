@@ -196,7 +196,15 @@ max_depth = 0
 
 print("Quick sort results - First element pivot on Reverse-Sorted input array of size 10")
 print("Original: ", reversed_10)
+
+start_time = time.perf_counter_ns()
 quick_sort_first(reversed_10, 0, len(reversed_10) - 1)
-print("Sorted: ", reversed_10)
+finish_time = time.perf_counter_ns()
+run_time = finish_time - start_time
+
+print("Reversed: ", reversed_10)
 print("Comparisons: ", quick_comparisons)
 print("Swaps: ", quick_swaps)
+print("Run time: ", run_time)
+print("Max recursion depth: ", max_depth)
+print()
