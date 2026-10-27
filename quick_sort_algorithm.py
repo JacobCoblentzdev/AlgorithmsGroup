@@ -21,7 +21,8 @@ def partition(values, low, high):
     quick_swaps += 1
     return i + 1
 
-# quick sort with last pivot partition. no change to original code here
+
+# quick sort with last pivot partition
 def quick_sort_last(values, low, high):
     if low < high:
         p = partition(values, low, high)
@@ -41,7 +42,7 @@ def quick_sort_first(values, low, high):
         quick_sort_first(values, p + 1, high)
         
 # quick sort with random pivot partition. 
-def quick_sort_first(values, low, high):
+def quick_sort_random(values, low, high):
     if low < high:
         
         # this is inclusive of both low and high, which is good here
@@ -51,8 +52,8 @@ def quick_sort_first(values, low, high):
         values[rand], values[high] = values[high], values[rand]
         
         p = partition(values, low, high)
-        quick_sort_first(values, low, p - 1)
-        quick_sort_first(values, p + 1, high)
+        quick_sort_random(values, low, p - 1)
+        quick_sort_random(values, p + 1, high)
         
 # quick sort with median-of-3 pivot partition. 
 def quick_sort_median_of_3(values, low, high):
@@ -161,6 +162,9 @@ print("Sorted: ", sorted_10)
 print("Comparisons: ", quick_comparisons)
 print("Swaps: ", quick_swaps)
 print()
+
+quick_comparisons = 0
+quick_swaps = 0
 
 print("Quick sort results - First element pivot on Reverse-Sorted input array of size 10")
 print("Original: ", reversed_10)
