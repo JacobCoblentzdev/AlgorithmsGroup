@@ -136,8 +136,10 @@ def quick_sort_first(values, low, high):
         # get middle index
         mid = int(low + (high - low) / 2)
         
-        # gives sorted list of median of 3
-        sorted_median_list = sorted(low, mid, high, key=values)
+        iterable1 = (low, mid, high)
+        
+        # gives sorted list of median of 3 list
+        sorted_median_list = sorted(iterable1, key=lambda parameter: values[parameter])
         
         # 1 is the middle element of the sorted list, which is the median of three
         median_of_3 = sorted_median_list[1]
