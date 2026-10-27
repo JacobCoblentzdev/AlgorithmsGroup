@@ -236,7 +236,7 @@ print("Run time: ", run_time)
 print("Max recursion depth: ", max_depth)
 print()
 
-# reset variables before next run
+# reset variables before next run /
 quick_comparisons = 0
 quick_swaps = 0
 start_time = 0
