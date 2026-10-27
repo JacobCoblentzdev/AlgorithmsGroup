@@ -175,3 +175,25 @@ duplicate_800 = random.choices(range(400), k=800)
 
 #--------------------------------------------------------------------
 
+def run_test(pivot_name, sort_function, input_name, original):
+    global quick_comparisons, quick_swaps, max_depth
+
+    quick_comparisons = 0
+    quick_swaps = 0
+    max_depth = 0
+
+    values = original.copy()
+
+    print("\nTest: {pivot name} | {input_name} | Size {len(values)}")
+    print("Original: ", values)
+
+    start_time = time.perf_counter_ns()
+    sort_function(values, 0, len(values) - 1)
+    finish_time = time.perf_counter_ns()
+
+    print("Sorteed: ", values)
+    print("Comparisons: ", quick_comparisons)
+    print("Swaps: ", quick_swaps)
+    print("Runtime: ", finish_time - start_time)
+    print("Max recursion depth: ", max_depth)
+    print("Correctly sorted: ", values == sorted(original))
