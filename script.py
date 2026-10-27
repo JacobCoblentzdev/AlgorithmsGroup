@@ -199,11 +199,13 @@ def run_test(pivot_name, sort_function, input_name, original):
     print("Max recursion depth: ", max_depth)
     print("Correctly sorted: ", values == sorted(original))
 
+    #Four different pivot strats
     pivot_strats = [("First pivot", quick_sort_first), 
                     ("Last pivot", quick_sort_last), 
                     ("Random pivot", quick_sort_random), 
                     ("Median of three pivot", quick_sort_median_of_3)]
 
+    #Four different input types and three different array sizes
     test_arr = [("Sorted", sorted_10),
                 ("Reverse sorted", reversed_10),
                 ("Random", random_10),
@@ -218,3 +220,14 @@ def run_test(pivot_name, sort_function, input_name, original):
                 ("Reverse sorted", reversed_800),
                 ("Random", random_800),
                 ("Duplicate heavy", duplicate_800)]
+
+    #Run 4 X 4 X 3 = 48 tests
+    test_num = 0
+    for pivot_name, sort_function, in pivot_strats:
+        for input_name, original in test_arr:
+            test_num += 1
+            print("\n\tTest #{test_number} of 48")
+
+            run_test(pivot_name, sort_function, input_name, original)
+
+    print("\n\tCompleted {test_number} tests.")
