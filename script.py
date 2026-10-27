@@ -197,3 +197,9 @@ def run_test(pivot_name, sort_function, input_name, original):
     print("Runtime: ", finish_time - start_time)
     print("Max recursion depth: ", max_depth)
     print("Correctly sorted: ", values == sorted(original))
+
+    pivot_strats = [("First pivot", quick_sort_first), 
+                    ("Last pivot", quick_sort_last), 
+                    ("Random pivot", quick_sort_random), 
+                    ("Median of three pivot", quick_sort_median_of_3)]
+    
