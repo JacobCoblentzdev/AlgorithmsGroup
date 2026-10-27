@@ -5,6 +5,7 @@ import time
 
 quick_comparisons = 0
 quick_swaps = 0
+max_depth = 0
 
 def partition(values, low, high):
     global quick_comparisons, quick_swaps
@@ -172,6 +173,9 @@ print()
 
 quick_comparisons = 0
 quick_swaps = 0
+start_time = 0
+finish_time = 0
+run_time = 0
 
 print("Quick sort results - First element pivot on Reverse-Sorted input array of size 10")
 print("Original: ", reversed_10)
