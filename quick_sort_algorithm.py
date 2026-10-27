@@ -128,3 +128,23 @@ def quick_sort_first(values, low, high):
         p = partition(values, low, high)
         quick_sort_first(values, low, p - 1)
         quick_sort_first(values, p + 1, high)
+        
+# quick sort with median-of-3 pivot partition. 
+def quick_sort_first(values, low, high):
+    if low < high:
+        
+        # get middle index
+        mid = int(low + (high - low) / 2)
+        
+        # gives sorted list of median of 3
+        sorted_median_list = sorted(low, mid, high, key=values)
+        
+        # 1 is the middle element of the sorted list, which is the median of three
+        median_of_3 = sorted_median_list[1]
+        
+        # what at low becomes the pivot. what at index of high is the pivot, so we put the value at low in there. this is so we don't have to change the calling line of the partition, can still call it with high
+        values[median_of_3], values[high] = values[high], values[median_of_3]
+        
+        p = partition(values, low, high)
+        quick_sort_first(values, low, p - 1)
+        quick_sort_first(values, p + 1, high)
