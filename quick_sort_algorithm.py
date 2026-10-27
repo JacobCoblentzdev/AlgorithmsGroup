@@ -159,9 +159,9 @@ duplicate_800 = random.choices(range(400), k=800)
 print("Quick sort results - First element pivot on Sorted input array of size 10")
 print("Original: ", sorted_10)
 
-start_time = time.perf_counter()
+start_time = time.perf_counter_ns()
 quick_sort_first(sorted_10, 0, len(sorted_10) - 1)
-finish_time = time.perf_counter()
+finish_time = time.perf_counter_ns()
 run_time = finish_time - start_time
 
 print("Sorted: ", sorted_10)
