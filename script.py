@@ -221,7 +221,7 @@ test_arr = [("Sorted", sorted_10),
             ("Random", random_800),
             ("Duplicate heavy", duplicate_800)]
 
-#Run 4 X 4 X 3 = 48 tests
+#Run 4 pivot strats X 4 input types X 3 array sizes = 48 tests
 test_num = 0
 for pivot_name, sort_function, in pivot_strats:
     for input_name, original in test_arr:
