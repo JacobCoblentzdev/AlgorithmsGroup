@@ -2,6 +2,7 @@
 
 import random
 import time
+import csv
 
 quick_comparisons = 0
 quick_swaps = 0
@@ -193,12 +194,17 @@ def run_test(pivot_name, sort_function, input_name, original):
     sort_function(values, 0, len(values) - 1)
     finish_time = time.perf_counter_ns()
 
+    runtime = finish_time - start_time
+    correctly_sorted = values == sorted(original)
+
     #print("Sorted: ", values)
     print("Comparisons: ", quick_comparisons)
     print("Swaps: ", quick_swaps)
     print("Runtime: ", finish_time - start_time)
     print("Max recursion depth: ", max_depth)
     print("Correctly sorted: ", values == sorted(original))
+
+    return [pivot_name, input_name, len(original), quick_comparisons, quick_swaps, runtime, max_depth, correctly_sorted]
 
 #Four different pivot strats
 pivot_strats = [("First pivot", quick_sort_first), 
