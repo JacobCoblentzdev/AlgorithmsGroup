@@ -230,6 +230,8 @@ test_arr = [("Sorted", sorted_10),
 
 #Run 4 pivot strats X 4 input types X 3 array sizes = 48 tests
 test_num = 0
+
+all_results = []
 # outer loop runs through 4 pivot strats
 for pivot_name, sort_function, in pivot_strats:
     # inner loop runs 12 times (4 input types X 3 array sizes)
@@ -237,7 +239,19 @@ for pivot_name, sort_function, in pivot_strats:
         test_num += 1
         print(f"\n\tTest #{test_num} of 48")
 
-        run_test(pivot_name, sort_function, input_name, original)
+        result = run_test(pivot_name, sort_function, input_name, original)
+
+        all_results.append(result)
 
 print(f"\n\tCompleted {test_num} tests.")
+
+with open("quicksort_results.csv", "w", newline="") as file:
+
+    writer = csv.writer(file)
+
+    writer.writerow(["Pivot Strat", "Input Type", "Array Size", "Comparisons", "Swaps", "Runtime (nano)", "Max Recursion Depth", "Correctly Sorted"])
+
+    writer.writerows(all_results)
+
+print("\nCSV file 'quicksort_results.csv' created successfully.")
 
