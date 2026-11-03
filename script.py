@@ -183,6 +183,7 @@ def run_test(pivot_name, sort_function, input_name, original):
     quick_swaps = 0
     max_depth = 0
 
+    # this is because sorting is in place, so we make a copy
     values = original.copy()
 
     print(f"\nTest: {pivot_name} | {input_name} | Size {len(values)}")
@@ -223,7 +224,9 @@ test_arr = [("Sorted", sorted_10),
 
 #Run 4 pivot strats X 4 input types X 3 array sizes = 48 tests
 test_num = 0
+# outer loop runs through 4 pivot strats
 for pivot_name, sort_function, in pivot_strats:
+    # inner loop runs 12 times (4 input types X 3 array sizes)
     for input_name, original in test_arr:
         test_num += 1
         print(f"\n\tTest #{test_num} of 48")
