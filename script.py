@@ -268,30 +268,64 @@ def inroduction():
 
     print("\nEach input type will receive its own winner.")
 
+    def run_all_tests():
+        all_results = []
+
+        total_tests = len(pivot_strats) * len(test_arr)
+        test_num = 0
+
+        print("\nRunning all Quck Sort tests...\n")
+
+        for pivot_name, sort_function, in pivot_strats:
+            # inner loop runs 12 times (4 input types X 3 array sizes)
+            for input_name, original in test_arr:
+                test_num += 1
+                #print(f"\n\tTest #{test_num} of 48")
+
+                result = run_test(pivot_name, sort_function, input_name, original)
+
+                all_results.append(result)
+
+                print(f"Completed test {test_num}/{total_tests}", end="\r")
+
+        print("\nAll tests completed")
+
+        with open("quicksort_results.csv", "w", newline="") as file:
+
+            writer = csv.writer(file)
+
+            writer.writerow(["Pivot Strat", "Input Type", "Array Size", "Comparisons", "Swaps", "Runtime (nano)", "Max Recursion Depth", "Correctly Sorted"])
+
+            writer.writerows(all_results)
+
+        print("\nCSV file 'quicksort_results.csv' created successfully.")
+
+        return all_results
+
 #Run 4 pivot strats X 4 input types X 3 array sizes = 48 tests
-test_num = 0
+#test_num = 0
 
-all_results = []
+#all_results = []
 # outer loop runs through 4 pivot strats
-for pivot_name, sort_function, in pivot_strats:
-    # inner loop runs 12 times (4 input types X 3 array sizes)
-    for input_name, original in test_arr:
-        test_num += 1
-        print(f"\n\tTest #{test_num} of 48")
+# for pivot_name, sort_function, in pivot_strats:
+#     # inner loop runs 12 times (4 input types X 3 array sizes)
+#     for input_name, original in test_arr:
+#         test_num += 1
+#         print(f"\n\tTest #{test_num} of 48")
 
-        result = run_test(pivot_name, sort_function, input_name, original)
+#         result = run_test(pivot_name, sort_function, input_name, original)
 
-        all_results.append(result)
+#         all_results.append(result)
 
-print(f"\n\tCompleted {test_num} tests.")
+#print(f"\n\tCompleted {test_num} tests.")
 
-with open("quicksort_results.csv", "w", newline="") as file:
+# with open("quicksort_results.csv", "w", newline="") as file:
 
-    writer = csv.writer(file)
+#     writer = csv.writer(file)
 
-    writer.writerow(["Pivot Strat", "Input Type", "Array Size", "Comparisons", "Swaps", "Runtime (nano)", "Max Recursion Depth", "Correctly Sorted"])
+#     writer.writerow(["Pivot Strat", "Input Type", "Array Size", "Comparisons", "Swaps", "Runtime (nano)", "Max Recursion Depth", "Correctly Sorted"])
 
-    writer.writerows(all_results)
+#     writer.writerows(all_results)
 
-print("\nCSV file 'quicksort_results.csv' created successfully.")
+# print("\nCSV file 'quicksort_results.csv' created successfully.")
 
