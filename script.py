@@ -370,6 +370,55 @@ def inroduction():
 
             plt.close()
 
+    def display_conclusion():
+
+        results = read_csv_results()
+
+        input_types = ["Sorted", "Reverse sorted", "Random", "Duplicate heavy"]
+
+        print("\tQuick sort conclusion")
+
+        if len(results) != 48 or not all(row["Correctly Sorted"].lower() == "true" for row in results):
+
+            print("\nResults are incomplete or some tests failed.")
+            print("Cannot determine the winners.")
+
+            return
+
+        for input_name in input_types: 
+            pivot_totals = {}
+
+            for pivot_name, function in pivot_strats:
+
+                selected = [row for row in results if row["Input Type"] == input_name and row["Pivot Strat"] == pivot_name]
+
+                if len(selected) != 3:
+                    print(f"\nIncomplete data for {input_name}.")
+                    return
+
+                total_runtime = sum(int(row["Runtime (nano)"]) for row in selected)
+
+                total_comparisons = sum(int(row["Comparisons"]) for row in selected)
+
+                total_swaps = sum(int(row["Swaps"]) for row in selected)
+
+                average_runtime = total_runtime / 3
+
+                pivot_totals[pivot_name] = (average_runtime, total_comparisons, total_swaps)
+
+            winner = min(pivot_totals, key=lambda name: pivot_totals[name])
+
+            print(f"\nInput Type: {input_name}")
+
+            print("Winning pivot strat:", winner)
+
+            print("Average runtime:", f"{pivot_totals[winner][0]:,.2f} ns")
+
+            print("Total Swaps:", pivot_totals[winner][2])
+
+        print("\n")
+
+
 #Run 4 pivot strats X 4 input types X 3 array sizes = 48 tests
 # test_num = 0
 # all_results = []
