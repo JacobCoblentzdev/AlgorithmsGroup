@@ -1,4 +1,5 @@
 Pivot Strat,Input Type,Array Size,Comparisons,Swaps,Runtime (nano),Max Recursion Depth,Correctly Sorted
+<<<<<<< HEAD
 First pivot,Sorted,10,45,9,20800,9,True
 First pivot,Reverse sorted,10,45,34,17600,9,True
 First pivot,Random,10,24,20,10600,5,True
@@ -47,3 +48,53 @@ Median of three pivot,Sorted,800,6187,3442,1648400,9,True
 Median of three pivot,Reverse sorted,800,10870,6793,2405900,20,True
 Median of three pivot,Random,800,7034,3767,1745300,14,True
 Median of three pivot,Duplicate heavy,800,7248,4715,2087200,16,True
+=======
+First pivot,Sorted,10,45,9,11000,9,True
+First pivot,Reverse sorted,10,45,34,10600,9,True
+First pivot,Random,10,24,20,7700,5,True
+First pivot,Duplicate heavy,10,22,20,7200,4,True
+First pivot,Sorted,100,4950,99,195500,99,True
+First pivot,Reverse sorted,100,4950,2599,290300,99,True
+First pivot,Random,100,577,368,57500,10,True
+First pivot,Duplicate heavy,100,772,513,70000,15,True
+First pivot,Sorted,800,319600,799,10871900,799,True
+First pivot,Reverse sorted,800,319600,160799,18023000,799,True
+First pivot,Random,800,7749,4405,734500,17,True
+First pivot,Duplicate heavy,800,8576,5546,1156800,21,True
+Last pivot,Sorted,10,45,54,11100,9,True
+Last pivot,Reverse sorted,10,45,29,7100,9,True
+Last pivot,Random,10,21,13,4500,4,True
+Last pivot,Duplicate heavy,10,21,16,6200,4,True
+Last pivot,Sorted,100,4950,5049,356900,99,True
+Last pivot,Reverse sorted,100,4950,2549,278800,99,True
+Last pivot,Random,100,589,314,47200,11,True
+Last pivot,Duplicate heavy,100,580,347,50200,11,True
+Last pivot,Sorted,800,319600,320399,22072700,799,True
+Last pivot,Reverse sorted,800,319600,160399,16430600,799,True
+Last pivot,Random,800,7965,4432,613000,17,True
+Last pivot,Duplicate heavy,800,8713,5935,730400,22,True
+Random pivot,Sorted,10,24,18,18600,5,True
+Random pivot,Reverse sorted,10,30,17,10100,6,True
+Random pivot,Random,10,21,14,8300,4,True
+Random pivot,Duplicate heavy,10,27,27,9900,6,True
+Random pivot,Sorted,100,718,459,71100,16,True
+Random pivot,Reverse sorted,100,669,474,71200,12,True
+Random pivot,Random,100,633,358,66200,11,True
+Random pivot,Duplicate heavy,100,611,426,72600,14,True
+Random pivot,Sorted,800,8491,5212,744200,20,True
+Random pivot,Reverse sorted,800,7986,4738,736900,19,True
+Random pivot,Random,800,8868,5464,803700,23,True
+Random pivot,Duplicate heavy,800,9637,5094,865700,26,True
+Median of three pivot,Sorted,10,19,13,15900,3,True
+Median of three pivot,Reverse sorted,10,19,14,10700,3,True
+Median of three pivot,Random,10,19,14,11100,3,True
+Median of three pivot,Duplicate heavy,10,21,18,11700,4,True
+Median of three pivot,Sorted,100,480,282,79300,6,True
+Median of three pivot,Reverse sorted,100,686,441,78100,11,True
+Median of three pivot,Random,100,545,331,73500,9,True
+Median of three pivot,Duplicate heavy,100,570,363,103900,11,True
+Median of three pivot,Sorted,800,6187,3442,674100,9,True
+Median of three pivot,Reverse sorted,800,10870,6793,944000,20,True
+Median of three pivot,Random,800,7034,3767,772400,14,True
+Median of three pivot,Duplicate heavy,800,7248,4715,844800,16,True
+>>>>>>> 246131e (Update quicksort_results.csv)
