@@ -198,11 +198,11 @@ def run_test(pivot_name, sort_function, input_name, original):
     correctly_sorted = values == sorted(original)
 
     #print("Sorted: ", values)
-    print("Comparisons: ", quick_comparisons)
-    print("Swaps: ", quick_swaps)
-    print("Runtime: ", finish_time - start_time)
-    print("Max recursion depth: ", max_depth)
-    print("Correctly sorted: ", values == sorted(original))
+    # print("Comparisons: ", quick_comparisons)
+    # print("Swaps: ", quick_swaps)
+    # print("Runtime: ", finish_time - start_time)
+    # print("Max recursion depth: ", max_depth)
+    # print("Correctly sorted: ", values == sorted(original))
 
     return [pivot_name, input_name, len(original), quick_comparisons, quick_swaps, runtime, max_depth, correctly_sorted]
 
@@ -244,7 +244,7 @@ def yes_no(question):
             print("Please enter Yes or No.")
 
 def introduction():
-    print("\tQuick Sort UI\n")
+    print("\tQuick Sort UI")
     print("\nWhat is being tested:")
     print(" 4 Pivot Strategies")
     print(" 4 Input Types")
@@ -261,7 +261,7 @@ def introduction():
     print(" Random")
     print(" Duplicate Heavy")
 
-    print("\tEfficiency ranking rules:")
+    print("\t\nEfficiency ranking rules:")
     print(" 1. Lowest average runtime")
     print(" 2. Lowest total comparisons")
     print(" 3. Lowest total swaps")
@@ -321,13 +321,19 @@ def display_results():
         print("Comparisons:", result["Comparisons"])
         print("Swaps:", result["Swaps"])
         print("Runtime:", result["Runtime (nano)"], "ns")
-        print("Max depth:", result["Max recursion depth"])
+        print("Max Recursion Depth:", result["Max Recursion Depth"])
         print("Correctly Sorted:", result["Correctly Sorted"])
 
 def create_visualizations(show_charts=False):
     import matplotlib.pyplot as plt
 
     results = read_csv_results()
+
+    # print("Checking visualization data:")
+
+    # for row in results:
+    #     if row["Input Type"] == "Sorted":
+    #         print(row["Pivot Strat"], row["Array Size"], row["Runtime (nano)"])
 
     input_types = ["Sorted ", "Reverse sorted", "Random", "Duplicate heavy"]
 
@@ -337,7 +343,7 @@ def create_visualizations(show_charts=False):
 
         for pivot_name, function in pivot_strats:
 
-            selected = [row for row in results if row["Input Type"] == input_name and row["Pivot Strat"] == pivot_name]
+            selected = [row for row in results if row["Input Type"].strip().lower() == input_name.strip().lower() and row["Pivot Strat"].strip().lower() == pivot_name.strip().lower()]
 
             selected.sort(key=lambda row: int(row["Array Size"]))
 
@@ -446,7 +452,7 @@ def main():
     else:
         print("\nGoodbye.")
 
-    print("\nQuick Sort Performance finished.")
+    print("Quick Sort Performance finished.")
 
 if __name__ == "__main__":
     main()
