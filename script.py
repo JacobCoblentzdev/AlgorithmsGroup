@@ -243,7 +243,7 @@ def yes_no(question):
         else:
             print("Please enter Yes or No.")
 
-def inroduction():
+def introduction():
     print("\tQuick Sort UI\n")
     print("\nWhat is being tested:")
     print(" 4 Pivot Strategies")
@@ -268,17 +268,17 @@ def inroduction():
 
     print("\nEach input type will receive its own winner.")
 
-    def run_all_tests():
-        all_results = []
+def run_all_tests():
+    all_results = []
 
-        total_tests = len(pivot_strats) * len(test_arr)
-        test_num = 0
+    total_tests = len(pivot_strats) * len(test_arr)
+    test_num = 0
 
-        print("\nRunning all Quck Sort tests...\n")
+    print("\nRunning all Quck Sort tests...\n")
 
-        for pivot_name, sort_function, in pivot_strats:
+    for pivot_name, sort_function, in pivot_strats:
             # inner loop runs 12 times (4 input types X 3 array sizes)
-            for input_name, original in test_arr:
+        for input_name, original in test_arr:
                 test_num += 1
                 #print(f"\n\tTest #{test_num} of 48")
 
@@ -288,135 +288,168 @@ def inroduction():
 
                 print(f"Completed test {test_num}/{total_tests}", end="\r")
 
-        print("\nAll tests completed")
+    print("\nAll tests completed")
 
-        with open("quicksort_results.csv", "w", newline="") as file:
+    with open("quicksort_results.csv", "w", newline="") as file:
 
-            writer = csv.writer(file)
+        writer = csv.writer(file)
 
-            writer.writerow(["Pivot Strat", "Input Type", "Array Size", "Comparisons", "Swaps", "Runtime (nano)", "Max Recursion Depth", "Correctly Sorted"])
+        writer.writerow(["Pivot Strat", "Input Type", "Array Size", "Comparisons", "Swaps", "Runtime (nano)", "Max Recursion Depth", "Correctly Sorted"])
 
-            writer.writerows(all_results)
+        writer.writerows(all_results)
 
-        print("\nCSV file 'quicksort_results.csv' created successfully.")
+    print("\nCSV file 'quicksort_results.csv' created successfully.")
 
-        return all_results
+    return all_results
 
-    def read_csv_results():
-        with open(CSV_FILE, "r", newline="") as file:
-            reader = csv.DictReader(file)
-            return list(reader)
+def read_csv_results():
+    with open(CSV_FILE, "r", newline="") as file:
+        reader = csv.DictReader(file)
+        return list(reader)
 
-    def display_results():
-        results = read_csv_results()
+def display_results():
+    results = read_csv_results()
 
-        print("\n\tAll test results")
+    print("\n\tAll test results")
 
-        for number, result in enumerate(results, 1):
+    for number, result in enumerate(results, 1):
 
-            print(f"\nTest #{number}")
-            print("Pivot:", result["Pivot Strat"])
-            print("Input:", result["Input Type"])
-            print("Size:", result["Array Size"])
-            print("Comparisons:", result["Comparisons"])
-            print("Swaps:", result["Swaps"])
-            print("Runtime:", result["Runtime (nano)"], "ns")
-            print("Max depth:", result["Max recursion depth"])
-            print("Correctly Sorted:", result["Correctly Sorted"])
+        print(f"\nTest #{number}")
+        print("Pivot:", result["Pivot Strat"])
+        print("Input:", result["Input Type"])
+        print("Size:", result["Array Size"])
+        print("Comparisons:", result["Comparisons"])
+        print("Swaps:", result["Swaps"])
+        print("Runtime:", result["Runtime (nano)"], "ns")
+        print("Max depth:", result["Max recursion depth"])
+        print("Correctly Sorted:", result["Correctly Sorted"])
 
-    def create_visualizations(show_charts=False):
-        import matplotlib.pyplot as plt
+def create_visualizations(show_charts=False):
+    import matplotlib.pyplot as plt
 
-        results = read_csv_results()
+    results = read_csv_results()
 
-        input_types = ["Sorted ", "Reverse sorted", "Random", "Duplicate heavy"]
+    input_types = ["Sorted ", "Reverse sorted", "Random", "Duplicate heavy"]
 
-        for input_name in input_types:
+    for input_name in input_types:
 
-            plt.figure(figsize=(10, 6))
+        plt.figure(figsize=(10, 6))
 
-            for pivot_name, function in pivot_strats:
+        for pivot_name, function in pivot_strats:
 
-                selected = [row for row in results if row["Input Type"] == input_name and row["Pivot Strat"] == pivot_name]
+            selected = [row for row in results if row["Input Type"] == input_name and row["Pivot Strat"] == pivot_name]
 
-                selected.sort(key=lambda row: int(row["Array Size"]))
+            selected.sort(key=lambda row: int(row["Array Size"]))
 
-                sizes = [int(row["Array Size"]) for row in selected]
+            sizes = [int(row["Array Size"]) for row in selected]
 
-                runtime = [int(row["Runtime (nano)"]) for row in selected]
+            runtime = [int(row["Runtime (nano)"]) for row in selected]
 
-                plt.plot(sizes, runtime, marker="o", label=pivot_name)
+            plt.plot(sizes, runtime, marker="o", label=pivot_name)
 
-            plt.title("Quick Sort Runtime - " + input_name)
-            plt.xlabel("Array Size")
-            plt.ylabel("Runtime (nanoseconds)")
+        plt.title("Quick Sort Runtime - " + input_name)
+        plt.xlabel("Array Size")
+        plt.ylabel("Runtime (nanoseconds)")
 
-            plt.xticks([10, 100, 800])
+        plt.xticks([10, 100, 800])
 
-            plt.legend()
-            plt.grid(True)
+        plt.legend()
+        plt.grid(True)
 
-            filename = ("quicksort_" + input_name.lower().replace(" ", "_") + ".png")
+        filename = ("quicksort_" + input_name.lower().replace(" ", "_") + ".png")
 
-            plt.savefig(filename, dpi=300, bbox_inches="tight")
+        plt.savefig(filename, dpi=300, bbox_inches="tight")
 
-            print("Saved visualization:", filename)
+        print("Saved visualization:", filename)
 
-            if show_charts:
+        if show_charts:
 
-                print("Close the chart window to continue.")
+            print("Close the chart window to continue.")
 
-                plt.show()
+            plt.show()
 
-            plt.close()
+        plt.close()
 
-    def display_conclusion():
+def display_conclusion():
 
-        results = read_csv_results()
+    results = read_csv_results()
 
-        input_types = ["Sorted", "Reverse sorted", "Random", "Duplicate heavy"]
+    input_types = ["Sorted", "Reverse sorted", "Random", "Duplicate heavy"]
 
-        print("\tQuick sort conclusion")
+    print("\tQuick sort conclusion")
 
-        if len(results) != 48 or not all(row["Correctly Sorted"].lower() == "true" for row in results):
+    if len(results) != 48 or not all(row["Correctly Sorted"].lower() == "true" for row in results):
 
-            print("\nResults are incomplete or some tests failed.")
-            print("Cannot determine the winners.")
+        print("\nResults are incomplete or some tests failed.")
+        print("Cannot determine the winners.")
 
-            return
+        return
 
-        for input_name in input_types: 
-            pivot_totals = {}
+    for input_name in input_types: 
+        pivot_totals = {}
 
-            for pivot_name, function in pivot_strats:
+        for pivot_name, function in pivot_strats:
 
-                selected = [row for row in results if row["Input Type"] == input_name and row["Pivot Strat"] == pivot_name]
+            selected = [row for row in results if row["Input Type"] == input_name and row["Pivot Strat"] == pivot_name]
 
-                if len(selected) != 3:
-                    print(f"\nIncomplete data for {input_name}.")
-                    return
+            if len(selected) != 3:
+                print(f"\nIncomplete data for {input_name}.")
+                return
 
-                total_runtime = sum(int(row["Runtime (nano)"]) for row in selected)
+            total_runtime = sum(int(row["Runtime (nano)"]) for row in selected)
 
-                total_comparisons = sum(int(row["Comparisons"]) for row in selected)
+            total_comparisons = sum(int(row["Comparisons"]) for row in selected)
 
-                total_swaps = sum(int(row["Swaps"]) for row in selected)
+            total_swaps = sum(int(row["Swaps"]) for row in selected)
 
-                average_runtime = total_runtime / 3
+            average_runtime = total_runtime / 3
 
-                pivot_totals[pivot_name] = (average_runtime, total_comparisons, total_swaps)
+            pivot_totals[pivot_name] = (average_runtime, total_comparisons, total_swaps)
 
-            winner = min(pivot_totals, key=lambda name: pivot_totals[name])
+        winner = min(pivot_totals, key=lambda name: pivot_totals[name])
 
-            print(f"\nInput Type: {input_name}")
+        print(f"\nInput Type: {input_name}")
 
-            print("Winning pivot strat:", winner)
+        print("Winning pivot strat:", winner)
 
-            print("Average runtime:", f"{pivot_totals[winner][0]:,.2f} ns")
+        print("Average runtime:", f"{pivot_totals[winner][0]:,.2f} ns")
 
-            print("Total Swaps:", pivot_totals[winner][2])
+        print("Total Swaps:", pivot_totals[winner][2])
 
-        print("\n")
+    print("\n")
+
+def main():
+
+    introduction()
+
+    if not yes_no("\nWould you like to run all the tests?"):
+        print("\nGoodbye.")
+        return
+
+    run_all_tests()
+
+    if yes_no("\nWould you like to see the 48 results in the terminal?"):
+            display_results()
+
+    show_charts = yes_no("\nWould you like to see the visualization?")
+
+    print("\nGenerating visualization files...")
+
+    create_visualizations(show_charts)
+
+    if not show_charts:
+        print("\nCharts saved without being displayed.")
+
+    if yes_no("\nWould you like to see the conclusion?"):
+        display_conclusion()
+
+    else:
+        print("\nGoodbye.")
+
+    print("\nQuick Sort Performance finished.")
+
+if __name__ == "__main__":
+    main()
 
 
 #Run 4 pivot strats X 4 input types X 3 array sizes = 48 tests
