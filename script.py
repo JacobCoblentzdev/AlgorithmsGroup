@@ -187,7 +187,7 @@ def run_test(pivot_name, sort_function, input_name, original):
     # this is because sorting is in place, so we make a copy
     values = original.copy()
 
-    print(f"\nTest: {pivot_name} | {input_name} | Size {len(values)}")
+    #print(f"\nTest: {pivot_name} | {input_name} | Size {len(values)}")
     #print("Original: ", values)
 
     start_time = time.perf_counter_ns()
@@ -227,6 +227,46 @@ test_arr = [("Sorted", sorted_10),
             ("Reverse sorted", reversed_800),
             ("Random", random_800),
             ("Duplicate heavy", duplicate_800)]
+
+CSV_FILE = "quicksort_results.csv"
+
+def yes_no(question):
+    while True:
+        answer = input(question + " (Yes/No): ").strip().lower()
+
+        if answer in ("yes", "y"):
+            return True
+
+        elif answer in ("no", "n"):
+            return False
+
+        else:
+            print("Please enter Yes or No.")
+
+def inroduction():
+    print("\tQuick Sort UI\n")
+    print("\nWhat is being tested:")
+    print(" 4 Pivot Strategies")
+    print(" 4 Input Types")
+    print(" 3 Array Sizes (10, 100, 800)")
+    print(" Total: 48 Tests")
+
+    print("\nPivot Strategies:")
+    for name, function in pivot_strats:
+        print(" ", name)
+
+    print("\nInput Types:")
+    print(" Sorted")
+    print(" Reverse Sorted")
+    print(" Random")
+    print(" Duplicate Heavy")
+
+    print("\tEfficiency ranking rules:")
+    print(" 1. Lowest average runtime")
+    print(" 2. Lowest total comparisons")
+    print(" 3. Lowest total swaps")
+
+    print("\nEach input type will receive its own winner.")
 
 #Run 4 pivot strats X 4 input types X 3 array sizes = 48 tests
 test_num = 0
