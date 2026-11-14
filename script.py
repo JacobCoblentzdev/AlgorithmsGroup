@@ -302,11 +302,78 @@ def inroduction():
 
         return all_results
 
-#Run 4 pivot strats X 4 input types X 3 array sizes = 48 tests
-#test_num = 0
+    def read_csv_results():
+        with open(CSV_FILE, "r", newline="") as file:
+            reader = csv.DictReader(file)
+            return list(reader)
 
-#all_results = []
-# outer loop runs through 4 pivot strats
+    def display_results():
+        results = read_csv_results()
+
+        print("\n\tAll test results")
+
+        for number, result in enumerate(results, 1):
+
+            print(f"\nTest #{number}")
+            print("Pivot:", result["Pivot Strat"])
+            print("Input:", result["Input Type"])
+            print("Size:", result["Array Size"])
+            print("Comparisons:", result["Comparisons"])
+            print("Swaps:", result["Swaps"])
+            print("Runtime:", result["Runtime (nano)"], "ns")
+            print("Max depth:", result["Max recursion depth"])
+            print("Correctly Sorted:", result["Correctly Sorted"])
+
+    def create_visualizations(show_charts=False):
+        import matplotlib.pyplot as plt
+
+        results = read_csv_results()
+
+        input_types = ["Sorted ", "Reverse sorted", "Random", "Duplicate heavy"]
+
+        for input_name in input_types:
+
+            plt.figure(figsize=(10, 6))
+
+            for pivot_name, function in pivot_strats:
+
+                selected = [row for row in results if row["Input Type"] == input_name and row["Pivot Strat"] == pivot_name]
+
+                selected.sort(key=lambda row: int(row["Array Size"]))
+
+                sizes = [int(row["Array Size"]) for row in selected]
+
+                runtime = [int(row["Runtime (nano)"]) for row in selected]
+
+                plt.plot(sizes, runtime, marker="o", label=pivot_name)
+
+            plt.title("Quick Sort Runtime - " + input_name)
+            plt.xlabel("Array Size")
+            plt.ylabel("Runtime (nanoseconds)")
+
+            plt.xticks([10, 100, 800])
+
+            plt.legend()
+            plt.grid(True)
+
+            filename = ("quicksort_" + input_name.lower().replace(" ", "_") + ".png")
+
+            plt.savefig(filename, dpi=300, bbox_inches="tight")
+
+            print("Saved visualization:", filename)
+
+            if show_charts:
+
+                print("Close the chart window to continue.")
+
+                plt.show()
+
+            plt.close()
+
+#Run 4 pivot strats X 4 input types X 3 array sizes = 48 tests
+# test_num = 0
+# all_results = []
+# # outer loop runs through 4 pivot strats
 # for pivot_name, sort_function, in pivot_strats:
 #     # inner loop runs 12 times (4 input types X 3 array sizes)
 #     for input_name, original in test_arr:
@@ -317,7 +384,7 @@ def inroduction():
 
 #         all_results.append(result)
 
-#print(f"\n\tCompleted {test_num} tests.")
+# print(f"\n\tCompleted {test_num} tests.")
 
 # with open("quicksort_results.csv", "w", newline="") as file:
 
