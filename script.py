@@ -336,51 +336,56 @@ def create_visualizations(show_charts=False):
     #     if row["Input Type"] == "Sorted":
     #         print(row["Pivot Strat"], row["Array Size"], row["Runtime (nano)"])
 
-    input_types = ["Sorted ", "Reverse sorted", "Random", "Duplicate heavy"]
+    inputs = ["Sorted ", "Reverse sorted", "Random", "Duplicate heavy"]
 
-    metrics = [("Comparisons", "Comparisons", "Total Comparisons"), ("Swaps", "Swaps", "Total Swaps"),
-               ("Max Recursion Depth", "Max Recursion Depth", "Maximum Recursion Depth"),
-               ("Runtime (nano)", "Runtime (nano)", "Runtime (nano)")]
+    pivots = ["First pivot", "Last pivot", "Random pivot", "Median of three pivot"]
 
-    for input_name in input_types:
+    metrics = ["Comparisons", "Swaps", "Runtime (nano)", "Max Recursion Depth"]
 
-        for csv_column, metric_name, y_label in metrics:
+    for metric in metrics:
+
+        for pivot in pivots:
 
             plt.figure(figsize=(10, 6))
 
-            for pivot_name, function in pivot_strats:
+            for input_type in inputs:
 
-                selected = [row for row in results if row["Input Type"].strip().lower() == input_name.strip().lower() and row["Pivot Strat"].strip().lower() == pivot_name.strip().lower()]
+                filtered_rows = [row for row in results 
+                                 if row["Pivot Strat"] == pivot 
+                                 and row["Input Type"] == input_type]
 
-                selected.sort(key=lambda row: int(row["Array Size"]))
+                filtered_rows.sort(key=lambda row: int(row["Array Size"]))
 
-                if len(selected) != 3:
-                    print(f"Warning: Expected 3 results for "
-                          f"{pivot_name} / {input_name}, "
-                          f"found {len(selected)}")
-                    continue
+                # if len(selected) != 3:
+                #     print(f"Warning: Expected 3 results for "
+                #           f"{pivot_name} / {input_name}, "
+                #           f"found {len(selected)}")
+                #     continue
 
-                sizes = [int(row["Array Size"]) for row in selected]
+                sizes = [int(row["Array Size"]) for row in filtered_rows]
 
-                metric_values = [int(row[csv_column])
-                                for row in selected]
+                values = [float(row[metric]) for row in filtered_rows]
+
+                # metric_values = [int(row[csv_column])
+                #                 for row in selected]
 
                 #runtime = [int(row["Runtime (nano)"]) for row in selected]
 
-                plt.plot(sizes, metric_values, marker="o", label=pivot_name)
+                plt.plot(sizes, values, marker="o", label=input_type)
 
-            plt.title(f"{metric_name} - {input_name} Input")
+            plt.title(f"{metric} vs Array Size for {pivot} ")
             plt.xlabel("Array Size")
-            plt.ylabel(y_label)
+            plt.ylabel(metric)
 
-            plt.xticks([10, 100, 800])
+            #plt.xticks([10, 100, 800])
 
             plt.legend()
-            plt.grid(True)
+            plt.grid()
 
-            filename = ("quicksort_" + input_name.lower().replace(" ", "_") + ".png")
+            filename = (f'{metric.replace(" ", "_")}_'
+                        f'{pivot.replace(" ", "_")}.png')
 
-            plt.savefig(filename, dpi=300, bbox_inches="tight")
+            plt.savefig(filename)
 
             print("Saved visualization:", filename)
 
