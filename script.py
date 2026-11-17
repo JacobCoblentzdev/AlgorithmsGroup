@@ -262,11 +262,12 @@ def introduction():
     print(" Duplicate Heavy")
 
     print("\t\nEfficiency ranking rules:")
-    print(" 1. Lowest average runtime")
-    print(" 2. Lowest total comparisons")
-    print(" 3. Lowest total swaps")
+    print(" 1. Lowest total comparisons (across 3 array sizes)")
+    print(" 2. Lowest total swaps (across 3 array sizes) - if comparisons are tied")
+    print(" 3. Lowest total max recursion depth (across 3 array sizes) - if both comparisons and swaps are tied")
+    print(" 4. Lowest average runtime (of 3 array sizes) - if all other metrics are tied")
 
-    print("\nEach input type will receive its own winner.")
+    print("\nEach input type will receive its own winning pivot strategy.")
 
 def run_all_tests():
     all_results = []
@@ -337,44 +338,61 @@ def create_visualizations(show_charts=False):
 
     input_types = ["Sorted ", "Reverse sorted", "Random", "Duplicate heavy"]
 
+    metrics = [("Comparisons", "Comparisons", "Total Comparisons"), ("Swaps", "Swaps", "Total Swaps"),
+               ("Max Recursion Depth", "Max Recursion Depth", "Maximum Recursion Depth"),
+               ("Runtime (nano)", "Runtime (nano)", "Runtime (nano)")]
+
     for input_name in input_types:
 
-        plt.figure(figsize=(10, 6))
+        for csv_column, metric_name, y_label in metrics:
 
-        for pivot_name, function in pivot_strats:
+            plt.figure(figsize=(10, 6))
 
-            selected = [row for row in results if row["Input Type"].strip().lower() == input_name.strip().lower() and row["Pivot Strat"].strip().lower() == pivot_name.strip().lower()]
+            for pivot_name, function in pivot_strats:
 
-            selected.sort(key=lambda row: int(row["Array Size"]))
+                selected = [row for row in results if row["Input Type"].strip().lower() == input_name.strip().lower() and row["Pivot Strat"].strip().lower() == pivot_name.strip().lower()]
 
-            sizes = [int(row["Array Size"]) for row in selected]
+                selected.sort(key=lambda row: int(row["Array Size"]))
 
-            runtime = [int(row["Runtime (nano)"]) for row in selected]
+                if len(selected) != 3:
+                    print(f"Warning: Expected 3 results for "
+                          f"{pivot_name} / {input_name}, "
+                          f"found {len(selected)}")
+                    continue
 
-            plt.plot(sizes, runtime, marker="o", label=pivot_name)
+                sizes = [int(row["Array Size"]) for row in selected]
 
-        plt.title("Quick Sort Runtime - " + input_name)
-        plt.xlabel("Array Size")
-        plt.ylabel("Runtime (nanoseconds)")
+                metric_values = [int(row[csv_column])
+                                for row in selected]
 
-        plt.xticks([10, 100, 800])
+                #runtime = [int(row["Runtime (nano)"]) for row in selected]
 
-        plt.legend()
-        plt.grid(True)
+                plt.plot(sizes, metric_values, marker="o", label=pivot_name)
 
-        filename = ("quicksort_" + input_name.lower().replace(" ", "_") + ".png")
+            plt.title(f"{metric_name} - {input_name} Input")
+            plt.xlabel("Array Size")
+            plt.ylabel(y_label)
 
-        plt.savefig(filename, dpi=300, bbox_inches="tight")
+            plt.xticks([10, 100, 800])
 
-        print("Saved visualization:", filename)
+            plt.legend()
+            plt.grid(True)
 
-        if show_charts:
+            filename = ("quicksort_" + input_name.lower().replace(" ", "_") + ".png")
 
-            print("Close the chart window to continue.")
+            plt.savefig(filename, dpi=300, bbox_inches="tight")
 
-            plt.show()
+            print("Saved visualization:", filename)
 
-        plt.close()
+            if show_charts:
+
+                print("Close the chart window to continue.")
+
+                plt.show()
+
+            plt.close()
+
+    print("\nAll 16 visualizations have been generated.")
 
 def display_conclusion():
 
@@ -402,25 +420,28 @@ def display_conclusion():
                 print(f"\nIncomplete data for {input_name}.")
                 return
 
-            total_runtime = sum(int(row["Runtime (nano)"]) for row in selected)
+            #total_runtime = sum(int(row["Runtime (nano)"]) for row in selected)
 
             total_comparisons = sum(int(row["Comparisons"]) for row in selected)
 
             total_swaps = sum(int(row["Swaps"]) for row in selected)
 
-            average_runtime = total_runtime / 3
+            total_max_depth = sum(int(row["Max Recursion Depth"]) for row in selected)
 
-            pivot_totals[pivot_name] = (average_runtime, total_comparisons, total_swaps)
+            average_runtime = sum(int(row["Runtime (nano)"]) for row in selected) / 3
+
+            pivot_totals[pivot_name] = (total_comparisons, total_swaps, total_max_depth, average_runtime)
 
         winner = min(pivot_totals, key=lambda name: pivot_totals[name])
+        winning_stats = pivot_totals[winner]
 
         print(f"\nInput Type: {input_name}")
-
         print("Winning pivot strat:", winner)
 
-        print("Average runtime:", f"{pivot_totals[winner][0]:,.2f} ns")
-
-        print("Total Swaps:", pivot_totals[winner][2])
+        print("Comparisons (total number across 3 array sizes):", winning_stats[0])
+        print("Swaps (total number across 3 array sizes):", winning_stats[1])
+        print("Max recursion depth (total number across 3 array sizes):", winning_stats[2])
+        print("Average runtime (of 3 array sizes):", f"{winning_stats[3]:,.2f} ns")
 
     print("\n")
 
