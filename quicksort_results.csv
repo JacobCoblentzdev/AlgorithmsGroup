@@ -1,49 +1,49 @@
 Pivot Strat,Input Type,Array Size,Comparisons,Swaps,Runtime (nano),Max Recursion Depth,Correctly Sorted
-First pivot,Sorted,10,45,9,14400,9,True
-First pivot,Reverse sorted,10,45,34,7800,9,True
-First pivot,Random,10,24,20,8000,5,True
-First pivot,Duplicate heavy,10,22,20,6200,4,True
-First pivot,Sorted,100,4950,99,217300,99,True
-First pivot,Reverse sorted,100,4950,2599,269900,99,True
-First pivot,Random,100,577,368,51400,10,True
-First pivot,Duplicate heavy,100,772,513,64200,15,True
-First pivot,Sorted,800,319600,799,9826000,799,True
-First pivot,Reverse sorted,800,319600,160799,16227500,799,True
-First pivot,Random,800,7749,4405,567500,17,True
-First pivot,Duplicate heavy,800,8576,5546,641700,21,True
-Last pivot,Sorted,10,45,54,10400,9,True
-Last pivot,Reverse sorted,10,45,29,6400,9,True
-Last pivot,Random,10,21,13,4900,4,True
-Last pivot,Duplicate heavy,10,21,16,4800,4,True
-Last pivot,Sorted,100,4950,5049,358100,99,True
-Last pivot,Reverse sorted,100,4950,2549,272600,99,True
-Last pivot,Random,100,589,314,48000,11,True
-Last pivot,Duplicate heavy,100,580,347,50000,11,True
-Last pivot,Sorted,800,319600,320399,22741000,799,True
-Last pivot,Reverse sorted,800,319600,160399,16127200,799,True
-Last pivot,Random,800,7965,4432,596300,17,True
-Last pivot,Duplicate heavy,800,8713,5935,703300,22,True
-Random pivot,Sorted,10,24,18,16800,5,True
-Random pivot,Reverse sorted,10,30,17,8500,6,True
-Random pivot,Random,10,21,14,9700,4,True
-Random pivot,Duplicate heavy,10,27,27,10700,6,True
-Random pivot,Sorted,100,718,459,77400,16,True
-Random pivot,Reverse sorted,100,669,474,77000,12,True
+First pivot,Sorted,10,45,9,14300,9,True
+First pivot,Reverse sorted,10,45,34,9700,9,True
+First pivot,Random,10,24,20,5200,5,True
+First pivot,Duplicate heavy,10,22,20,6100,4,True
+First pivot,Sorted,100,4950,99,200500,99,True
+First pivot,Reverse sorted,100,4950,2599,269700,99,True
+First pivot,Random,100,577,368,51200,10,True
+First pivot,Duplicate heavy,100,772,513,62800,15,True
+First pivot,Sorted,800,319600,799,9843600,799,True
+First pivot,Reverse sorted,800,319600,160799,16547900,799,True
+First pivot,Random,800,7749,4405,594400,17,True
+First pivot,Duplicate heavy,800,8576,5546,676000,21,True
+Last pivot,Sorted,10,45,54,9600,9,True
+Last pivot,Reverse sorted,10,45,29,6900,9,True
+Last pivot,Random,10,21,13,4800,4,True
+Last pivot,Duplicate heavy,10,21,16,5300,4,True
+Last pivot,Sorted,100,4950,5049,364400,99,True
+Last pivot,Reverse sorted,100,4950,2549,274500,99,True
+Last pivot,Random,100,589,314,47500,11,True
+Last pivot,Duplicate heavy,100,580,347,60400,11,True
+Last pivot,Sorted,800,319600,320399,23917000,799,True
+Last pivot,Reverse sorted,800,319600,160399,16421100,799,True
+Last pivot,Random,800,7965,4432,576400,17,True
+Last pivot,Duplicate heavy,800,8713,5935,659300,22,True
+Random pivot,Sorted,10,24,18,17600,5,True
+Random pivot,Reverse sorted,10,30,17,10500,6,True
+Random pivot,Random,10,21,14,8500,4,True
+Random pivot,Duplicate heavy,10,27,27,11800,6,True
+Random pivot,Sorted,100,718,459,73900,16,True
+Random pivot,Reverse sorted,100,669,474,75000,12,True
 Random pivot,Random,100,633,358,67500,11,True
-Random pivot,Duplicate heavy,100,611,426,78300,14,True
-Random pivot,Sorted,800,8491,5212,761400,20,True
-Random pivot,Reverse sorted,800,7986,4738,726400,19,True
-Random pivot,Random,800,8868,5464,794400,23,True
-Random pivot,Duplicate heavy,800,9637,5094,838900,26,True
-Median of three pivot,Sorted,10,19,13,15400,3,True
-Median of three pivot,Reverse sorted,10,19,14,8300,3,True
-Median of three pivot,Random,10,19,14,8300,3,True
-Median of three pivot,Duplicate heavy,10,21,18,11200,4,True
-Median of three pivot,Sorted,100,480,282,64400,6,True
-Median of three pivot,Reverse sorted,100,686,441,79800,11,True
-Median of three pivot,Random,100,545,331,75400,9,True
-Median of three pivot,Duplicate heavy,100,570,363,79000,11,True
-Median of three pivot,Sorted,800,6187,3442,653600,9,True
-Median of three pivot,Reverse sorted,800,10870,6793,986400,20,True
-Median of three pivot,Random,800,7034,3767,717400,14,True
-Median of three pivot,Duplicate heavy,800,7248,4715,864300,16,True
+Random pivot,Duplicate heavy,100,611,426,70600,14,True
+Random pivot,Sorted,800,8491,5212,731300,20,True
+Random pivot,Reverse sorted,800,7986,4738,752800,19,True
+Random pivot,Random,800,8868,5464,782700,23,True
+Random pivot,Duplicate heavy,800,9637,5094,874100,26,True
+Median of three pivot,Sorted,10,19,13,15900,3,True
+Median of three pivot,Reverse sorted,10,19,14,8400,3,True
+Median of three pivot,Random,10,19,14,8900,3,True
+Median of three pivot,Duplicate heavy,10,21,18,11000,4,True
+Median of three pivot,Sorted,100,480,282,66800,6,True
+Median of three pivot,Reverse sorted,100,686,441,79100,11,True
+Median of three pivot,Random,100,545,331,69700,9,True
+Median of three pivot,Duplicate heavy,100,570,363,80500,11,True
+Median of three pivot,Sorted,800,6187,3442,651900,9,True
+Median of three pivot,Reverse sorted,800,10870,6793,989900,20,True
+Median of three pivot,Random,800,7034,3767,710100,14,True
+Median of three pivot,Duplicate heavy,800,7248,4715,825900,16,True
