@@ -336,7 +336,7 @@ def create_visualizations(show_charts=False):
     #     if row["Input Type"] == "Sorted":
     #         print(row["Pivot Strat"], row["Array Size"], row["Runtime (nano)"])
 
-    inputs = ["Sorted ", "Reverse sorted", "Random", "Duplicate heavy"]
+    inputs = ["Sorted", "Reverse sorted", "Random", "Duplicate heavy"]
 
     pivots = ["First pivot", "Last pivot", "Random pivot", "Median of three pivot"]
 
