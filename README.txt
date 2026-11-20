@@ -51,7 +51,7 @@ Execution instructions:
 9.	If you entered “Yes”, you will see four sections of output. Each is the winning pivot strategy for the different input types. Each section has that winning pivot strategy’s total number of comparisons, swaps, and recursion depth (across the 3 array sizes), and the average runtime (of the 3 array sizes). The program is now finished. 
 
 Additional notes: 
-•	The project folder also has the files “quick_sort_algorithm.py” and “visualize.py”. The algorithm file has the original algorithm code. That file is not run, since the code is pasted into “script.py” which is run. The file “visualize.py” has the code to generate the visualizations. That code is used in “script.py” as well, so “visualize.py” is not run. 
+•	The project folder also has the files “quick_sort_algorithm.py” and “visualize.py”. The algorithm file has the original algorithm code. That file is not run, since the code is pasted into “script.py” which is run. The file “visualize.py” has the code to generate the visualizations. That code is used in “script.py” as well.
 •	No datasets or small sample inputs are required, since script.py generates the input arrays. 
 
 Example usage:
